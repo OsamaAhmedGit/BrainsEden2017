@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
     private float movex;
     private float movey;
     public float moveSpeed;
-	public float startAngVelocity;
 
     public Rigidbody2D rb;
 
@@ -23,16 +22,7 @@ public class PlayerController : MonoBehaviour {
         movey = Input.GetAxis("Vertical");
 
         rb.velocity = new Vector2(movex * moveSpeed, movey * moveSpeed);
+		rb.angularVelocity = 0;
 
-
-//		startAngVelocity = rb.angularVelocity;
-//		if (startAngVelocity > 0)
-//		{
-//			rb.angularVelocity = (startAngVelocity - 100f);
-//		}
-//		if (startAngVelocity < 0)
-//		{
-//			rb.angularVelocity = (startAngVelocity + 100f);
-//		}
     }
 }
