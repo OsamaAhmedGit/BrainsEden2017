@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RandomLevelGenerator : MonoBehaviour {
 
+    public GameObject player;
+
     public GameObject[] tiles;
     public GameObject wall;
 
@@ -14,6 +16,9 @@ public class RandomLevelGenerator : MonoBehaviour {
 
     public float delay;
 
+    public float probabilityUp;
+    public float probabilityRight;
+    public float probabilityDown;
 
     //Drawing Walls Around Level
     public float minY = 99999999;
@@ -34,13 +39,13 @@ public class RandomLevelGenerator : MonoBehaviour {
     {
         for(int i = 0; i < tileAmount; i++)
         {
-            int direction = Random.Range(0, 3);
+            float direction = Random.Range(0f, 1f);
 
             int tileType = Random.Range(0, tiles.Length);
 
             DrawTile(tileType);
 
-            Move(direction);
+            CallMove(direction);
 
             yield return new WaitForSeconds(delay);
 
@@ -51,6 +56,26 @@ public class RandomLevelGenerator : MonoBehaviour {
         }
 
         yield return 0;
+    }
+
+    void CallMove(float direction)
+    {
+        if(direction < probabilityUp)
+        {
+            Move(0);
+        }
+        else if(direction < probabilityRight)
+        {
+            Move(1);
+        }
+        else if(direction < probabilityDown)
+        {
+            Move(2);
+        }
+        else
+        {
+            Move(3);
+        }
     }
 
     void Move(int direction)
@@ -102,7 +127,14 @@ public class RandomLevelGenerator : MonoBehaviour {
     void FinishedDrawing()
     {
         CalculateWallValues();
+        SpawnObjects();
         DrawWalls();
+        
+    }
+
+    void SpawnObjects()
+    {
+        Instantiate(player, createdTiles[Random.Range(0, createdTiles.Count)], Quaternion.identity);
     }
 
     void CalculateWallValues()
