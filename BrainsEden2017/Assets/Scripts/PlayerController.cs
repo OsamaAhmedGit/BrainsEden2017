@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     private float movex;
     private float movey;
     public float moveSpeed;
+	public float horR, verR;
 
     public Rigidbody2D rb;
 
@@ -22,7 +23,17 @@ public class PlayerController : MonoBehaviour {
         movey = Input.GetAxis("Vertical_L");
 
         rb.velocity = new Vector2(movex * moveSpeed, movey * moveSpeed);
-		rb.angularVelocity = 0;
+
+		horR = Input.GetAxis ("Horizontal_R");
+		verR = Input.GetAxis ("Vertical_R");
+
+
+//		Vector2 lookVec = new Vector2 (Input.GetAxis("Horizontal_R"), Input.GetAxis("Vertical_R"));
+//		transform.LookAt(transform.position.toVector2() + lookVec);
+
+		Vector3 lookVec = new Vector3 (Input.GetAxis("Horizontal_R"), Input.GetAxis("Vertical_R"), 1f);
+		transform.rotation = Quaternion.LookRotation(lookVec, Vector3.back);
+
 
     }
 }

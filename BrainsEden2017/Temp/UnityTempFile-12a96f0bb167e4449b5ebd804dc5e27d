@@ -79,6 +79,7 @@
 -define:UNITY_EDITOR_OSX
 -define:UNITY_TEAM_LICENSE
 'Assets/Scripts/CameraController.cs'
+'Assets/Scripts/ExtensionMethods.cs'
 'Assets/Scripts/GitTestScript.cs'
 'Assets/Scripts/PlayerController.cs'
 'Assets/Scripts/RandomLevelGenerator.cs'
