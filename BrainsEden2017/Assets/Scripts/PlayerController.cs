@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour {
         //transform.Translate(moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0, 0);
         //transform.Translate(0, moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0);
 
-        movex = Input.GetAxis("Horizontal_L");
-        movey = Input.GetAxis("Vertical_L");
+        movex = Input.GetAxis("Horizontal");
+        movey = Input.GetAxis("Vertical");
 
         rb.velocity = new Vector2(movex * moveSpeed, movey * moveSpeed);
 		rb.angularVelocity = 0;
