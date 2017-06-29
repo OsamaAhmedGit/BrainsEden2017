@@ -9,10 +9,14 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed;
 	public float horR, verR;
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
+
+	private Animator animator;
 
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
+
+		animator = GetComponent<Animator> ();
 	}
 	
 	void FixedUpdate () {
@@ -27,6 +31,14 @@ public class PlayerController : MonoBehaviour {
 		horR = Input.GetAxis ("Horizontal_R");
 		verR = Input.GetAxis ("Vertical_R");
 
+		if (Input.GetAxis ("Horizontal_L") < 0)
+			animator.Play ("PlayerLeftAnimation");
+		else if (Input.GetAxis ("Horizontal_L") > 0)
+			animator.Play ("PlayerRightAnimation");
+		else if (Input.GetAxis ("Vertical_L") < 0)
+			animator.Play ("PlayerDownAnimation");
+		else if (Input.GetAxis ("Vertical_L") > 0)
+			animator.Play ("PlayerUpAnimation");
 
 //		Vector2 lookVec = new Vector2 (Input.GetAxis("Horizontal_R"), Input.GetAxis("Vertical_R"));
 //		transform.LookAt(transform.position.toVector2() + lookVec);
