@@ -10,14 +10,14 @@ public class CameraController : MonoBehaviour {
 
 	void Start () {
 
-        offset = transform.position;
+		offset.z = -5;
 	}
 	
 	void Update () {
 
         if(player == null)
-            player = GameObject.Find("Player(Clone)");
+            player = GameObject.Find("Player");
         else
-            transform.position = player.transform.position + offset;
+			transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, player.transform.position.z + offset.z);
 	}
 }
